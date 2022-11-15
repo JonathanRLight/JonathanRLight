@@ -1,0 +1,238 @@
+ARP offload - Disabled
+	is the network adapter's ability to respond to an IPv4 ARP request without waking the computer. To enable the feature, both the hardware and the driver must support ARP offload. Enabled (default)
+	
+	The Address Resolution Protocol (ARP) is a communication protocol used for discovering the link layer address, such as a MAC address, associated with a given internet layer address, typically an IPv4 address.
+	
+	This is not needed.
+
+Direct Memory Access (DMA) Coalescing - Disabled
+ 
+	DMA (direct memory access) allows the network device to move packet data directly to the system's memory, reducing CPU utilization. However, the frequency and random intervals at which packets arrive do not allow the system to enter a lower power state. DMA coalescing allows the NIC to collect packets before it initiates a DMA event. This may increase network latency but also increases the chances that the system will consume less energy. Adapters and network devices based on the Intel® Ethernet Controller I350 (and later controllers) support DMA coalescing.
+
+	Higher DMA coalescing values result in more energy saved but may increase your system's network latency. If you enable DMA coalescing, you should also set the interrupt moderation rate to 'Minimal'. This minimizes the latency impact imposed by DMA coalescing and results in better peak network throughput performance. You must enable DMA coalescing on all active ports in the system. You may not gain any energy savings if it is enabled only on some of the ports in your system. There are also several BIOS, platform, and application settings that will affect your potential energy savings.
+
+	Again, with the energy saving shit.  No, no, and no.  May increase network latency is bad, mkay?
+
+Enable PME - Disabled
+
+	PME Aggregation Function (PAF) is a computer networking mechanism defined in Clause 61 of the IEEE 802.3 standard, which allows one or more Physical Medium Entities (PMEs) to be combined to form a single logical Ethernet link.
+	
+	Very cool stuff, but not needed here.
+	
+Energy Efficient Ethernet - Disabled
+
+	Here we go again.  No, no, no.
+
+	In computer networking, Energy-Efficient Ethernet (EEE) is a set of enhancements to twisted-pair, twinaxial, backplane, and optical fiber Ethernet physical-layer variants that reduce power consumption during periods of low data activity.[1] The intention is to reduce power consumption by 50% or more, while retaining full compatibility with existing equipment.[2]
+
+Flow Control - rx enabled
+	you don't want tx flow control here for streaming
+	this allows the reciever to tell the sender that it can't keep up
+	well, naturally it's going to do this all the time
+	so you see large 1-2 mbps swings in the stream
+	this flattens the stream at the expense of some packet loss during problems
+	but, you're going to have issues anyway, so better to have the problems be problems and the rest of the time it's flat
+	up down swings reduced from 1-2 mbps to >1 mbps
+	on the rx side, this is fine, some delay in recieve is generally buffered so much you'll not notice
+	
+Gigabit master / slave mode - Auto Detect
+	
+	This can force link speed down to 100Mbps (or disconnect) if it goes wrong.  As the options are force master, force slave, or auto detect, auto detect it is.
+	
+Interrupt Moderation - Disabled
+Interrupt Moderation Rate - Off
+
+	Sets the Interrupt Throttle Rate (ITR), the rate at which the controller moderates interrupts.
+
+	The default setting is optimized for common configurations. Changing this setting can improve network performance on certain network and system configurations.
+
+	Options
+
+	Adaptive (ITR = -1, no interrupts/sec, it is dynamically changed by the driver)
+	Off (ITR = 0, no limit)
+	Minimal (ITR = 200)
+	Low (ITR = 400)
+	Medium (ITR = 950)
+	High (ITR = 2000)
+	Extreme (ITR = 3600)
+
+	When an event occurs, the adapter generates an interrupt, which allows the driver to handle the packet. At greater link speeds, more interrupts are created, and CPU rates also increase. This results in poor system performance. When you use a higher ITR setting, the interrupt rate is lower, and the result is better system performance.
+
+	Note	A higher ITR also means the driver has more latency in handling packets. If the adapter is handling many small packets, lower the ITR so the driver is more responsive to incoming and outgoing packets.
+
+	The average packet size of a video stream versus that of an audio stream is very different. Video packets sizes are usually large (800-1500 bytes) while audio packet sizes are generally small (480 bytes or less).
+
+	Having a dedicated cpu for streaming should mean that interrupt moderation is low, minimal, or off.
+
+	Intel says:
+	Reduce Interrupt Moderation Rate to Low, Minimal, or Off:
+	Also known as Interrupt Throttle Rate (ITR).
+	The default is Adaptive for most roles.
+	The low latency profile sets the rate to off.
+	The storage profiles set the rate to medium.
+	Note	Decreasing Interrupt Moderation Rate increases CPU utilization.
+
+Jumbo Packet - Disabled
+
+	Enable Jumbo Frames to the largest size supported across the network (4KB, 9KB, or 16KB).
+	The default is Disabled.
+	Note	Enable Jumbo Frames only if devices across the network support them and are configured to use the same frame size.
+	Jumbo frame support is required for frame sizes over the standard 1500 byte mtu. While useful in local scenarios where topology is known, you can assume that over the internet this is not the case.
+	
+Large Send Offload V2 IPV4 - Disabled
+Large Send Offload V2 IPV6 - Disabled
+
+Enables the adapter to offload the task of segmenting TCP messages into valid Ethernet frames.
+
+Because the adapter hardware can complete data segmentation faster than operating system software, this feature can improve transmission performance. The adapter also uses fewer CPU resources.
+
+You can configure Large Send Offload separately for IPv4 and IPv6.
+
+Note	For adapters to benefit from this feature, link partners must support flow control frames.  The large send offload version 2 (LSOV2) interface is an enhanced version of LSOV1. LSOV2 supports IPv6, IPv4, and segmentation for large TCP packets that are larger than 64K.
+
+Cool stuff, but not needed here.
+
+Locally Administered Address - Not Present
+
+	To change the MAC address, first click the Advanced tab, and under Settings click Locally Administered Address. 
+	If you have a reason to change your MAC, here it is.
+	
+Log Link State Event - Disabled
+
+	Enables the logging of the following link state changes to the system event log.
+
+	LINK_UP_CHANGE
+	When this message is displayed, the link is up.
+
+	LINK_DOWN_CHANGE
+	When this message is displayed, the link is down. To investigate the issue, click the Link Speed tab and run diagnostics.
+
+	LINK_DUPLEX_MISMATCH
+	This message signifies a mismatch in duplex between the adapter and the link partner. To investigate this issue, click the Link Speed tab and change the speed and duplex settings appropriately.
+	
+	To the extent this is useful to have in logs, fine.  For normal operation it isn't needed.
+	
+Maximum Number of RSS Queues - 4
+
+Enables Receive Side Scaling (RSS). RSS balances receive traffic across multiple CPUs or CPU cores. This setting has no effect if your system has only one processing unit.
+
+Notes	
+You must enable RSS for Intel® I/O Acceleration Technology to function under Microsoft* Windows Server* 2003.
+Some adapters configured to use Virtual Machine Queues (VMQ) don't support RSS. For these adapters, VMQ takes precedence over RSS. RSS is disabled.
+Changing this setting can cause a momentary loss of connectivity.
+
+Teaming Notes:
+If RSS is not enabled for all adapters in a team, RSS is disabled for the team.
+If an adapter that doesn't support RSS is added to a team, RSS is disabled for the team.
+If a third-party adapter is added to a team, its RSS settings must match the Intel® adapters in the team.
+Not all adapters support all RSS queue settings.
+
+Configures the number of RSS queues:
+
+One queue is used when low CPU utilization is required.
+Two queues are used when good throughput and low CPU utilization are required.
+
+** Four or more queues are used for applications that demand high transaction rates such as web server based applications. With this setting, the CPU utilization may be higher.
+ 
+Notes	
+Not all adapters support all RSS queue settings.
+RSS is not supported on some adapters configured to use Virtual Machine Queues (VMQ). For these adapters VMQ takes precedence over RSS. RSS is disabled.
+Using eight or more queues on Microsoft Windows Server* 2008 requires the system to reboot.
+Changing this setting may cause a momentary loss of connectivity.
+
+NS Offload - Disabled
+
+	Turn all "offload" options OFF - In almost all cases performance is improved only marginally when enabling network interface offload features on a PC. Offloading tasks from the CPU to the network adapter can help lower CPU usage on the PC at the expense of adapter throughput performance.
+	
+	NS Offload: Enables the adapter to respond to Neighbor Discovery Neighbor Solicitation requests, which prevents the computer from having to wake for them when asleep.
+	
+	Yeah, not needed here.
+	
+Packet Priority & VLAN - Packet Priority and VLAN Disabled
+	
+	Enables sending and receiving of IEEE 802.3ac tagged frames, which include
+
+	802.1p QoS (Quality of Service) tags for priority-tagged packets
+
+	802.1Q tags for VLANs
+
+	Intel® PROSet automatically enables 802.1p tagging when you set up a VLAN. You cannot disable QoS Packet Tagging on a VLAN because tagging is required for VLANs.
+
+	When this feature is enabled, tagged packets use the queue settings defined by the operating system Priority Level Definition.
+
+	When this setting is disabled, the adapter cannot tag outgoing packets with 802.1p/802.1Q tags.
+	
+	IEEE 802.1p is an extension of the IEEE 802.1Q (VLAN Tag Technology) standard. They work together to enable Layer 2 network switches to provide traffic priority and dynamic multicast filtering services. The IEEE 802.1Q standard defines the labels to be added to Ethernet MAC data frames.
+	
+	A virtual local area network (VLAN) is any broadcast domain that is partitioned and isolated in a computer network at the data link layer (OSI layer 2).
+
+	This should not be needed.
+	
+PTP Hardware Timestamp - Enabled
+
+	** Testing reveals that this may cause some strange buffering on devices regardless of steady state send from multiple inspection sources.  Still testing.
+
+	Precision Time Protocol (PTP) is a network-based time synchronization standard that is designed for distributing precise time and frequency from a clock source over packet-based networks. PTP enables switches and routers to deliver synchronization with a higher level of accuracy than NTP. It is suitable for today’s cloud networks and data center infrastructures.
+
+	PTP is capable of synchronizing multiple clocks to better than 100 nanoseconds on a network specifically designed for IEEE-1588. 
+
+	These timestamps are used to determine the network latency which is required to synchronize the Slave to the Master. There is a sync message transmitted typically every two seconds from the Master, and a delay request message from the Slave less frequently, about one request per minute
+	
+	Support for this started in Microsoft Windows 10 October 2018 Update (version 1809).
+	
+	The device’s clock hardware consists of an oscillator that is specified as ticks per second, such as 100 million ticks per second (100 MHz). Software in the device reads a counter that tells it how many ticks have occurred since the oscillator was powered on. If the device has a network connection, it can receive time from another device over the network. If the devices need to synchronize time accurately, simple messages that contain the current time are insufficient because time changes as messages travel over networks. Slight operational discrepancies between oscillators can also cause times to eventually drift apart, and that drift can also be affected by environmental factors like temperature. The PTP protocol operates continuously to resolve these challenges.
+	
+	While devices are connected to the Internet using an Ethernet cable, telecom service providers also implement large Ethernet networks outside of the home or office, and similar Ethernet networks exist within 4G/5G base stations to transfer mobile phone data to and from the Internet—all of which requires time synchronization based on PTP.
+	
+	This seems to be device and application specific in its use. Remains disabled due to test results and not fully understanding the use case.
+	
+Rx Buffer - 2048
+	
+	Use the largest value possible as long as a few extra kb of ram isn't a problem.
+	
+Receive Side Scaling - Enabled
+
+	Receive side scaling (RSS) enables processing for a TCP connection across multiple processors or processor cores. If your adapter does not support RSS, or if your operating system does not support it, the RSS setting does not display.
+
+Reduce Speed on Power Down
+
+	Reduce Speed?  No thanks.
+	
+Software Timestamp - Disabled.
+
+	Related to PTP, see above.  
+	
+Speed and Duplex - Auto Negotiation
+
+	You can set this manually, but there isn't a point.
+
+Transmit Buffers - 2048
+	
+	Again, max size if ram isn't a problem.
+	
+TCP Checksum Offload IPV4 - Rx & Tx Enabled
+TCP Checksum Offload IPV6 - Rx & Tx Enabled
+
+	Sez Intel
+	TCP checksum offload (IPv4) and TCP Checksum Offload (IPv6) enable the adapter to compute (TX) or verify (RX) the TCP checksum of packets. You can configure TCP checksum offload under TCP/IP Offloading Options properties when Intel® PROSet for Windows Device Manager is installed. This feature can improve performance and reduce CPU utilization. With Offloading enabled, the adapter computes or verifies the checksum for the operating system.
+	Default	RX and TX Enabled
+	
+Wait for Link - Auto Detect
+
+	Decides if the driver waits for Auto Negotiation to be successful before reporting the link state. On: Driver does wait for Auto Negotiation. If the speed is not set to Auto Negotiation, the driver waits for a short time for link to complete and then reports the link state.
+
+	There's no need to change this that I'm aware of.
+	
+Wake on ... Disabled
+
+	This isn't used for anything you're going to do.
+	
+	Security threats: The wake on LAN Magic packets are transmitted to the target device by the Wake on LAN tool, through the data link layer. Without required security measures in place, the Wake-on-LAN trigger packets can be manipulated by any attacker or rogue device in the same network.
+	
+	Wake-on-LAN (WOL) allows a computer to be powered on or awakened from standby, hibernate or shutdown from another device on a network.
+	
+	
+	
+	
+
+	
