@@ -5,20 +5,31 @@ Note that if you have specific reasons to deviate from these settings, use commo
 ARP offload - Disabled
 	is the network adapter's ability to respond to an IPv4 ARP request without waking the computer. 
 	To enable the feature, both the hardware and the driver must support ARP offload. Enabled (default)
-	The Address Resolution Protocol (ARP) is a communication protocol used for discovering the link layer address, such as a MAC address, associated with a given internet layer address, typically an IPv4 address.
+	The Address Resolution Protocol (ARP) is a communication protocol used for discovering the link layer address, such as a MAC address, 
+	associated with a given internet layer address, typically an IPv4 address.
 	This is not needed.
 
 Direct Memory Access (DMA) Coalescing - Disabled
  
-	DMA (direct memory access) allows the network device to move packet data directly to the system's memory, reducing CPU utilization. However, the frequency and random intervals at which packets arrive do not allow the system to enter a lower power state. DMA coalescing allows the NIC to collect packets before it initiates a DMA event. This may increase network latency but also increases the chances that the system will consume less energy. Adapters and network devices based on the Intel® Ethernet Controller I350 (and later controllers) support DMA coalescing.
+	DMA (direct memory access) allows the network device to move packet data directly to the system's memory, reducing CPU utilization. 
+	However, the frequency and random intervals at which packets arrive do not allow the system to enter a lower power state. 
+	DMA coalescing allows the NIC to collect packets before it initiates a DMA event. 
+	This may increase network latency but also increases the chances that the system will consume less energy. 
+	Adapters and network devices based on the Intel® Ethernet Controller I350 (and later controllers) support DMA coalescing.
 
-	Higher DMA coalescing values result in more energy saved but may increase your system's network latency. If you enable DMA coalescing, you should also set the interrupt moderation rate to 'Minimal'. This minimizes the latency impact imposed by DMA coalescing and results in better peak network throughput performance. You must enable DMA coalescing on all active ports in the system. You may not gain any energy savings if it is enabled only on some of the ports in your system. There are also several BIOS, platform, and application settings that will affect your potential energy savings.
+	Higher DMA coalescing values result in more energy saved but may increase your system's network latency. 
+	If you enable DMA coalescing, you should also set the interrupt moderation rate to 'Minimal'. 
+	This minimizes the latency impact imposed by DMA coalescing and results in better peak network throughput performance. 
+	You must enable DMA coalescing on all active ports in the system. 
+	You may not gain any energy savings if it is enabled only on some of the ports in your system. 
+	There are also several BIOS, platform, and application settings that will affect your potential energy savings.
 
 	Again, with the energy saving shit.  No, no, and no.  May increase network latency is bad, mkay?
 
 Enable PME - Disabled
 
-	PME Aggregation Function (PAF) is a computer networking mechanism defined in Clause 61 of the IEEE 802.3 standard, which allows one or more Physical Medium Entities (PMEs) to be combined to form a single logical Ethernet link.
+	PME Aggregation Function (PAF) is a computer networking mechanism defined in Clause 61 of the IEEE 802.3 standard, 
+	which allows one or more Physical Medium Entities (PMEs) to be combined to form a single logical Ethernet link.
 	
 	Very cool stuff, but not needed here.
 	
@@ -26,7 +37,9 @@ Energy Efficient Ethernet - Disabled
 
 	Here we go again.  No, no, no.
 
-	In computer networking, Energy-Efficient Ethernet (EEE) is a set of enhancements to twisted-pair, twinaxial, backplane, and optical fiber Ethernet physical-layer variants that reduce power consumption during periods of low data activity.[1] The intention is to reduce power consumption by 50% or more, while retaining full compatibility with existing equipment.[2]
+	In computer networking, Energy-Efficient Ethernet (EEE) is a set of enhancements to twisted-pair, twinaxial, backplane, 
+	and optical fiber Ethernet physical-layer variants that reduce power consumption during periods of low data activity.[1] 
+	The intention is to reduce power consumption by 50% or more, while retaining full compatibility with existing equipment.[2]
 
 Flow Control - rx enabled
 	you don't want tx flow control here for streaming
@@ -100,7 +113,8 @@ Large Send Offload V2 IPV6 - Disabled
 	LSOV2 supports IPv6, IPv4, and segmentation for large TCP packets that are larger than 64K.
 
 	Dell says:
-	While enabling network adapter offload features is typically beneficial, there are configurations where these advanced features are a detriment to overall performance. 
+	While enabling network adapter offload features is typically beneficial, there are configurations where these advanced features 
+	are a detriment to overall performance. 
 
 	 The incompatible technologies are:
 
@@ -156,26 +170,37 @@ Maximum Number of RSS Queues - 4
 	One queue is used when low CPU utilization is required.
 	Two queues are used when good throughput and low CPU utilization are required.
 
-	** Four or more queues are used for applications that demand high transaction rates such as web server based applications. With this setting, the CPU utilization may be higher.
+	** Four or more queues are used for applications that demand high transaction rates such as web server based applications. 
+	With this setting, the CPU utilization may be higher.
 	 
 	Notes	
 	Not all adapters support all RSS queue settings.
-	RSS is not supported on some adapters configured to use Virtual Machine Queues (VMQ). For these adapters VMQ takes precedence over RSS. RSS is disabled.
+	RSS is not supported on some adapters configured to use Virtual Machine Queues (VMQ). For these adapters VMQ takes precedence over RSS. 
 	Using eight or more queues on Microsoft Windows Server* 2008 requires the system to reboot.
 	Changing this setting may cause a momentary loss of connectivity.
 
 NS Offload - Disabled
 
 	Offloading tasks from the CPU to the network adapter can help lower CPU usage on the PC at the expense of adapter throughput performance.
-	NS Offload: Enables the adapter to respond to Neighbor Discovery Neighbor Solicitation requests, which prevents the computer from having to wake for them when asleep.
+	NS Offload: Enables the adapter to respond to Neighbor Discovery Neighbor Solicitation requests, which prevents the computer from having 
+	to wake for them when asleep.
 	
-	The Neighbor Discovery Protocol (NDP), or simply Neighbor Discovery (ND), is a protocol of the Internet protocol suite used with Internet Protocol Version 6 (IPv6).[1] It operates at the link layer of the Internet model,[2][3] and is responsible for gathering various information required for network communication, including the configuration of local connections and the domain name servers and gateways.[4]
+	The Neighbor Discovery Protocol (NDP), or simply Neighbor Discovery (ND), is a protocol of the Internet protocol suite used with Internet 
+	Protocol Version 6 (IPv6).[1] It operates at the link layer of the Internet model,[2][3] and is responsible for gathering various information 
+	required for network communication, including the configuration of local connections and the domain name servers and gateways.[4]
 
-	The protocol defines five ICMPv6 packet types to perform functions for IPv6 similar to the Address Resolution Protocol (ARP) and Internet Control Message Protocol (ICMP) Router Discovery and Router Redirect protocols for IPv4. It provides many improvements over its IPv4 counterparts (RFC 4861, section 3.1). For example, it includes Neighbor Unreachability Detection (NUD), thus improving robustness of packet delivery in the presence of failing routers or links, or mobile nodes.
+	The protocol defines five ICMPv6 packet types to perform functions for IPv6 similar to the Address Resolution Protocol (ARP) and Internet 
+	Control Message Protocol (ICMP) Router Discovery and Router Redirect protocols for IPv4. It provides many improvements over its IPv4 
+	counterparts (RFC 4861, section 3.1). For example, it includes Neighbor Unreachability Detection (NUD), thus improving robustness of packet 
+	delivery in the presence of failing routers or links, or mobile nodes.
 
-	The Inverse Neighbor Discovery (IND) protocol extension (RFC 3122) allows nodes to determine and advertise an IPv6 address corresponding to a given link-layer address, similar to Reverse ARP for IPv4.
+	The Inverse Neighbor Discovery (IND) protocol extension (RFC 3122) allows nodes to determine and advertise an IPv6 address corresponding 
+	to a given link-layer address, similar to Reverse ARP for IPv4.
 
-	The Secure Neighbor Discovery Protocol (SEND), a security extension of NDP, uses Cryptographically Generated Addresses (CGA) and the Resource Public Key Infrastructure (RPKI) to provide an alternative mechanism for securing NDP with a cryptographic method that is independent of IPsec. Neighbor Discovery Proxy (ND Proxy) (RFC 4389) provides a service similar to IPv4 Proxy ARP and allows bridging multiple network segments within a single subnet prefix when bridging cannot be done at the link layer.
+	The Secure Neighbor Discovery Protocol (SEND), a security extension of NDP, uses Cryptographically Generated Addresses (CGA) and the 
+	Resource Public Key Infrastructure (RPKI) to provide an alternative mechanism for securing NDP with a cryptographic method that is independent 
+	of IPsec. Neighbor Discovery Proxy (ND Proxy) (RFC 4389) provides a service similar to IPv4 Proxy ARP and allows bridging multiple network 
+	segments within a single subnet prefix when bridging cannot be done at the link layer.
 	
 	Yeah, not needed here.
 	Offloading this task is similar to other offloading issues.
@@ -198,17 +223,28 @@ Packet Priority & VLAN - Packet Priority and VLAN Disabled
 	
 PTP Hardware Timestamp - Enabled
 
-	Precision Time Protocol (PTP) is a network-based time synchronization standard that is designed for distributing precise time and frequency from a clock source over packet-based networks. PTP enables switches and routers to deliver synchronization with a higher level of accuracy than NTP. It is suitable for today’s cloud networks and data center infrastructures.
+	Precision Time Protocol (PTP) is a network-based time synchronization standard that is designed for distributing precise time and frequency 
+	from a clock source over packet-based networks. PTP enables switches and routers to deliver synchronization with a higher level of accuracy 
+	than NTP. It is suitable for today’s cloud networks and data center infrastructures.
 
 	PTP is capable of synchronizing multiple clocks to better than 100 nanoseconds on a network specifically designed for IEEE-1588. 
 
-	These timestamps are used to determine the network latency which is required to synchronize the Slave to the Master. There is a sync message transmitted typically every two seconds from the Master, and a delay request message from the Slave less frequently, about one request per minute
+	These timestamps are used to determine the network latency which is required to synchronize the Slave to the Master. 
+	There is a sync message transmitted typically every two seconds from the Master, and a delay request message from the Slave less frequently, 
+	about one request per minute
 	
 	Support for this started in Microsoft Windows 10 October 2018 Update (version 1809).
 	
-	The device’s clock hardware consists of an oscillator that is specified as ticks per second, such as 100 million ticks per second (100 MHz). Software in the device reads a counter that tells it how many ticks have occurred since the oscillator was powered on. If the device has a network connection, it can receive time from another device over the network. If the devices need to synchronize time accurately, simple messages that contain the current time are insufficient because time changes as messages travel over networks. Slight operational discrepancies between oscillators can also cause times to eventually drift apart, and that drift can also be affected by environmental factors like temperature. The PTP protocol operates continuously to resolve these challenges.
+	The device’s clock hardware consists of an oscillator that is specified as ticks per second, such as 100 million ticks per second (100 MHz). 
+	Software in the device reads a counter that tells it how many ticks have occurred since the oscillator was powered on. 
+	If the device has a network connection, it can receive time from another device over the network. 
+	If the devices need to synchronize time accurately, simple messages that contain the current time are insufficient because time changes as 
+	messages travel over networks. Slight operational discrepancies between oscillators can also cause times to eventually drift apart, and that 
+	drift can also be affected by environmental factors like temperature. The PTP protocol operates continuously to resolve these challenges.
 	
-	While devices are connected to the Internet using an Ethernet cable, telecom service providers also implement large Ethernet networks outside of the home or office, and similar Ethernet networks exist within 4G/5G base stations to transfer mobile phone data to and from the Internet—all of which requires time synchronization based on PTP.
+	While devices are connected to the Internet using an Ethernet cable, telecom service providers also implement large Ethernet networks outside 
+	of the home or office, and similar Ethernet networks exist within 4G/5G base stations to transfer mobile phone data to and from the Internet—all 
+	of which requires time synchronization based on PTP.
 	
 	This seems to be device and application specific in its use. 
 	Remains disabled due to test results and not fully understanding the use case.
@@ -253,27 +289,36 @@ TCP Checksum Offload IPV6 - Rx & Tx Enabled
 	Sez Microsoft
 	Address checksum offloads are a NIC feature that offloads the calculation of address checksums (IP, TCP, UDP) to the NIC hardware for both send and receive.
 
-	On the receive path, the checksum offload calculates the checksums in the IP, TCP, and UDP headers (as appropriate) and indicates to the OS whether the checksums passed, failed, or not checked. If the NIC asserts that the checksums are valid, the OS accepts the packet unchallenged. If the NIC asserts the checksums are invalid or not checked, the IP/TCP/UDP stack internally calculates the checksums again. If the computed checksum fails, the packet gets discarded.
+	On the receive path, the checksum offload calculates the checksums in the IP, TCP, and UDP headers (as appropriate) and indicates 
+	to the OS whether the checksums passed, failed, or not checked. If the NIC asserts that the checksums are valid, the OS accepts the packet 
+	unchallenged. If the NIC asserts the checksums are invalid or not checked, the IP/TCP/UDP stack internally calculates the checksums again. 
+	If the computed checksum fails, the packet gets discarded.
 
 	On the send path, the checksum offload calculates and inserts the checksums into the IP, TCP, or UDP header as appropriate.
 
-	Disabling checksum offloads on the send path does not disable checksum calculation and insertion for packets sent to the miniport driver using the Large Send Offload (LSO) feature.  To disable all checksum offload calculations, the user must also disable LSO.
+	Disabling checksum offloads on the send path does not disable checksum calculation and insertion for packets sent to the miniport driver 
+	using the Large Send Offload (LSO) feature.  To disable all checksum offload calculations, the user must also disable LSO.
 
 	Address Checksum Offloads should ALWAYS be enabled no matter what workload or circumstance. 
 	This most basic of all offload technologies always improve your network performance. 
-	Checksum offloading is also required for other stateless offloads to work including receive side scaling (RSS), receive segment coalescing (RSC), and large send offload (LSO).
+	Checksum offloading is also required for other stateless offloads to work including receive side scaling (RSS), 
+	receive segment coalescing (RSC), and large send offload (LSO).
 
 	The reason this stays enabled is for RSS, see the RSS section above.
 	
 Wait for Link - Auto Detect
 
-	Decides if the driver waits for Auto Negotiation to be successful before reporting the link state. On: Driver does wait for Auto Negotiation. If the speed is not set to Auto Negotiation, the driver waits for a short time for link to complete and then reports the link state.
+	Decides if the driver waits for Auto Negotiation to be successful before reporting the link state. 
+	On: Driver does wait for Auto Negotiation. If the speed is not set to Auto Negotiation, the driver waits for a short time 
+	for link to complete and then reports the link state.
 
 	There's no need to change this that I'm aware of.
 	
 Wake on ... Disabled
 	
-	Security threats: The wake on LAN Magic packets are transmitted to the target device by the Wake on LAN tool, through the data link layer. Without required security measures in place, the Wake-on-LAN trigger packets can be manipulated by any attacker or rogue device in the same network.
+	Security threats: The wake on LAN Magic packets are transmitted to the target device by the Wake on LAN tool, 
+	through the data link layer. Without required security measures in place, the Wake-on-LAN trigger packets can be manipulated by 
+	any attacker or rogue device in the same network.
 	
 	Wake-on-LAN (WOL) allows a computer to be powered on or awakened from standby, hibernate or shutdown from another device on a network.
 
