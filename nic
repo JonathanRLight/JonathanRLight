@@ -1,6 +1,7 @@
 Tired of configuring your network adapter?
 Me too...
 Note that if you have specific reasons to deviate from these settings, use common sense.
+See something wrong?  I don't know everything, drop me a note in one of the fifty ways you can find me.
 
 ARP offload - Disabled
 	is the network adapter's ability to respond to an IPv4 ARP request without waking the computer. 
