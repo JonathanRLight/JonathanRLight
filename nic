@@ -3,10 +3,9 @@ Me too...
 Note that if you have specific reasons to deviate from these settings, use common sense.
 
 ARP offload - Disabled
-	is the network adapter's ability to respond to an IPv4 ARP request without waking the computer. To enable the feature, both the hardware and the driver must support ARP offload. Enabled (default)
-	
+	is the network adapter's ability to respond to an IPv4 ARP request without waking the computer. 
+	To enable the feature, both the hardware and the driver must support ARP offload. Enabled (default)
 	The Address Resolution Protocol (ARP) is a communication protocol used for discovering the link layer address, such as a MAC address, associated with a given internet layer address, typically an IPv4 address.
-	
 	This is not needed.
 
 Direct Memory Access (DMA) Coalescing - Disabled
@@ -41,17 +40,17 @@ Flow Control - rx enabled
 	
 Gigabit master / slave mode - Auto Detect
 	
-	This can force link speed down to 100Mbps (or disconnect) if it goes wrong.  As the options are force master, force slave, or auto detect, auto detect it is.
+	This can force link speed down to 100Mbps (or disconnect) if it goes wrong.  
+	As the options are force master, force slave, or auto detect, auto detect it is.
 	
 Interrupt Moderation - Disabled
 Interrupt Moderation Rate - Off
 
 	Sets the Interrupt Throttle Rate (ITR), the rate at which the controller moderates interrupts.
-
-	The default setting is optimized for common configurations. Changing this setting can improve network performance on certain network and system configurations.
+	The default setting is optimized for common configurations. 
+	Changing this setting can improve network performance on certain network and system configurations.
 
 	Options
-
 	Adaptive (ITR = -1, no interrupts/sec, it is dynamically changed by the driver)
 	Off (ITR = 0, no limit)
 	Minimal (ITR = 200)
@@ -60,12 +59,16 @@ Interrupt Moderation Rate - Off
 	High (ITR = 2000)
 	Extreme (ITR = 3600)
 
-	When an event occurs, the adapter generates an interrupt, which allows the driver to handle the packet. At greater link speeds, more interrupts are created, and CPU rates also increase. This results in poor system performance. When you use a higher ITR setting, the interrupt rate is lower, and the result is better system performance.
+	When an event occurs, the adapter generates an interrupt, which allows the driver to handle the packet. 
+	At greater link speeds, more interrupts are created, and CPU rates also increase. 
+	This results in poor system performance. 
+	When you use a higher ITR setting, the interrupt rate is lower, and the result is better system performance.
 
-	Note	A higher ITR also means the driver has more latency in handling packets. If the adapter is handling many small packets, lower the ITR so the driver is more responsive to incoming and outgoing packets.
+	Note	A higher ITR also means the driver has more latency in handling packets. 
+	If the adapter is handling many small packets, lower the ITR so the driver is more responsive to incoming and outgoing packets.
 
-	The average packet size of a video stream versus that of an audio stream is very different. Video packets sizes are usually large (800-1500 bytes) while audio packet sizes are generally small (480 bytes or less).
-
+	The average packet size of a video stream versus that of an audio stream is very different. 
+	Video packets sizes are usually large (800-1500 bytes) while audio packet sizes are generally small (480 bytes or less).
 	Having a dedicated cpu for streaming should mean that interrupt moderation is low, minimal, or off.
 
 	Intel says:
@@ -81,18 +84,20 @@ Jumbo Packet - Disabled
 	Enable Jumbo Frames to the largest size supported across the network (4KB, 9KB, or 16KB).
 	The default is Disabled.
 	Note	Enable Jumbo Frames only if devices across the network support them and are configured to use the same frame size.
-	Jumbo frame support is required for frame sizes over the standard 1500 byte mtu. While useful in local scenarios where topology is known, you can assume that over the internet this is not the case.
+	Jumbo frame support is required for frame sizes over the standard 1500 byte mtu. 
+	While useful in local scenarios where topology is known, you can assume that over the internet this is not the case.
 	
 Large Send Offload V2 IPV4 - Disabled
 Large Send Offload V2 IPV6 - Disabled
 
 	Enables the adapter to offload the task of segmenting TCP messages into valid Ethernet frames.
-
-	Because the adapter hardware can complete data segmentation faster than operating system software, this feature can improve transmission performance. The adapter also uses fewer CPU resources.
-
+	Because the adapter hardware can complete data segmentation faster than operating system software, this feature can improve transmission performance. 
+	The adapter also uses fewer CPU resources.
 	You can configure Large Send Offload separately for IPv4 and IPv6.
 
-	Note	For adapters to benefit from this feature, link partners must support flow control frames.  The large send offload version 2 (LSOV2) interface is an enhanced version of LSOV1. LSOV2 supports IPv6, IPv4, and segmentation for large TCP packets that are larger than 64K.
+	Note	For adapters to benefit from this feature, link partners must support flow control frames.  
+	The large send offload version 2 (LSOV2) interface is an enhanced version of LSOV1. 
+	LSOV2 supports IPv6, IPv4, and segmentation for large TCP packets that are larger than 64K.
 
 	Dell says:
 	While enabling network adapter offload features is typically beneficial, there are configurations where these advanced features are a detriment to overall performance. 
@@ -104,6 +109,7 @@ Large Send Offload V2 IPV6 - Disabled
          Internet Protocol Network Address Translation (IPNAT)
          Third-party firewalls
          NDIS 5.1 intermediate drivers
+	
 	Because of this, disabling the advanced offloading features can greatly improve connectivity.
 	Note that other firewall and hardware manufacturers generally say the same thing dell says about this.
 	This feature is primarily useful for higher bandwidth links, 10Gb+, at link speeds lower than this it should be disabled.
@@ -120,18 +126,18 @@ Log Link State Event - Disabled
 
 	LINK_UP_CHANGE
 	When this message is displayed, the link is up.
-
 	LINK_DOWN_CHANGE
 	When this message is displayed, the link is down. To investigate the issue, click the Link Speed tab and run diagnostics.
-
 	LINK_DUPLEX_MISMATCH
-	This message signifies a mismatch in duplex between the adapter and the link partner. To investigate this issue, click the Link Speed tab and change the speed and duplex settings appropriately.
+	This message signifies a mismatch in duplex between the adapter and the link partner. 
+	To investigate this issue, click the Link Speed tab and change the speed and duplex settings appropriately.
 	
 	To the extent this is useful to have in logs, fine.  For normal operation it isn't needed.
 	
 Maximum Number of RSS Queues - 4
 
-	Enables Receive Side Scaling (RSS). RSS balances receive traffic across multiple CPUs or CPU cores. This setting has no effect if your system has only one processing unit.
+	Enables Receive Side Scaling (RSS). RSS balances receive traffic across multiple CPUs or CPU cores. 
+	This setting has no effect if your system has only one processing unit.
 
 	Notes	
 	You must enable RSS for Intel® I/O Acceleration Technology to function under Microsoft* Windows Server* 2003.
@@ -161,7 +167,6 @@ Maximum Number of RSS Queues - 4
 NS Offload - Disabled
 
 	Offloading tasks from the CPU to the network adapter can help lower CPU usage on the PC at the expense of adapter throughput performance.
-	
 	NS Offload: Enables the adapter to respond to Neighbor Discovery Neighbor Solicitation requests, which prevents the computer from having to wake for them when asleep.
 	
 	The Neighbor Discovery Protocol (NDP), or simply Neighbor Discovery (ND), is a protocol of the Internet protocol suite used with Internet Protocol Version 6 (IPv6).[1] It operates at the link layer of the Internet model,[2][3] and is responsible for gathering various information required for network communication, including the configuration of local connections and the domain name servers and gateways.[4]
@@ -184,7 +189,8 @@ Packet Priority & VLAN - Packet Priority and VLAN Disabled
 	You cannot disable QoS Packet Tagging on a VLAN because tagging is required for VLANs.
 	When this feature is enabled, tagged packets use the queue settings defined by the operating system Priority Level Definition.
 	When this setting is disabled, the adapter cannot tag outgoing packets with 802.1p/802.1Q tags.
-	IEEE 802.1p is an extension of the IEEE 802.1Q (VLAN Tag Technology) standard. They work together to enable Layer 2 network switches to provide traffic priority and dynamic multicast filtering services. 
+	IEEE 802.1p is an extension of the IEEE 802.1Q (VLAN Tag Technology) standard. 
+	They work together to enable Layer 2 network switches to provide traffic priority and dynamic multicast filtering services. 
 	The IEEE 802.1Q standard defines the labels to be added to Ethernet MAC data frames.
 	A virtual local area network (VLAN) is any broadcast domain that is partitioned and isolated in a computer network at the data link layer (OSI layer 2).
 
@@ -266,9 +272,9 @@ Wait for Link - Auto Detect
 	There's no need to change this that I'm aware of.
 	
 Wake on ... Disabled
-
-	This isn't used for anything you're going to do.
 	
 	Security threats: The wake on LAN Magic packets are transmitted to the target device by the Wake on LAN tool, through the data link layer. Without required security measures in place, the Wake-on-LAN trigger packets can be manipulated by any attacker or rogue device in the same network.
 	
 	Wake-on-LAN (WOL) allows a computer to be powered on or awakened from standby, hibernate or shutdown from another device on a network.
+
+	If you don't have a specific reason to use these, disable them.
