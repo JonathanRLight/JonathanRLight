@@ -41,6 +41,20 @@ Energy Efficient Ethernet - Disabled
 	In computer networking, Energy-Efficient Ethernet (EEE) is a set of enhancements to twisted-pair, twinaxial, backplane, 
 	and optical fiber Ethernet physical-layer variants that reduce power consumption during periods of low data activity.[1] 
 	The intention is to reduce power consumption by 50% or more, while retaining full compatibility with existing equipment.[2]
+	
+	Network Interface Settings
+	NDI is designed to enable successful video transport using the default configurations of network interface drivers, 
+	however most recent network interface drivers do support configuration of advanced properties that can help optimize NDI transmission.
+	Consider the following adjustments but note that adjusting on individual adapters can significantly affect performance and reliability; 
+	both positively and negatively. It is important to consider testing performance with a network analyzer before and after each setting 
+	change. The following adjustments are intended to help; however, performance will depend on network and usage 
+	(names and available settings vary between vendors, adapter models, and even between different driver versions):
+
+	Energy Efficient Ethernet: When enabled, this allows the adapter to engage power saving features while keeping connections active. 
+	This technology uses the standard IEEE 802.3az to allow for less power during periods of low data activity. 
+	Adapters that utilize the IEEE 802.3az standard should have no impact on performance of NDI, 
+	however some integrated circuits exist that were developed before the standard was finalized or do not adhere to the standard at all. 
+	In these cases, it is best to disable the energy efficiency while determining best network optimization.
 
 Flow Control - rx enabled
 	you don't want tx flow control here for streaming
@@ -271,7 +285,13 @@ Software Timestamp - Disabled.
 	
 Speed and Duplex - Auto Negotiation
 
-	You can set this manually, but there isn't a point.
+	You can set this manually, but there wasn't a point.
+	
+	Sez NDI
+	Speed and Duplex: This setting allows for selection of the desired speed and duplex of the network adapter. 
+	Usually this is set to Auto Negotiation. To ensure the maximum available throughput, this setting should be set to 
+	1 Gbps Full Duplex or higher if supported.
+
 
 Transmit Buffers - 2048
 	
