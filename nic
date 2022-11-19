@@ -114,6 +114,7 @@ Jumbo Packet - Disabled
 	Note	Enable Jumbo Frames only if devices across the network support them and are configured to use the same frame size.
 	Jumbo frame support is required for frame sizes over the standard 1500 byte mtu. 
 	While useful in local scenarios where topology is known, you can assume that over the internet this is not the case.
+	If using a dedicated link for NDI, consider using the largest size available for both adapters.
 	
 Large Send Offload V2 IPV4 - Disabled
 Large Send Offload V2 IPV6 - Disabled
