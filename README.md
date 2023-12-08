@@ -1,7 +1,7 @@
 - 👋 Hello World, I’m @JonathanRLight
 - It's Lit
 - Twitter		  	https://twitter.com/jonathanrlight
-- YouTube 		  https://www.youtube.com/channel/UCtD7OJhlwkuS6lk8nd8MqkA
+- YouTube 		  https://www.youtube.com/@jonathanrlight
 - Twitch 		  	https://www.twitch.tv/jonathanrlight
 - TikTok		  	https://www.tiktok.com/@jonathanrlight
 - Reddit		  	https://www.reddit.com/r/JonathanRLight
